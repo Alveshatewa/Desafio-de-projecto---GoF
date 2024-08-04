@@ -23,7 +23,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ApiError> handleDomainException(Exception domainError){
 
-        String message = "Unespected error";
+        String message = "Unexpected error";
         logger.error(message, domainError);
 
         return ResponseEntity.internalServerError().body(new ApiError(message));

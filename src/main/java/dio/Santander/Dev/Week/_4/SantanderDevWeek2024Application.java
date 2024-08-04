@@ -3,10 +3,13 @@ package dio.Santander.Dev.Week._4;
 import dio.Santander.Dev.Week._4.application.AskChampionUseCase;
 import dio.Santander.Dev.Week._4.application.ListChampionsUseCase;
 import dio.Santander.Dev.Week._4.domain.ports.ChampionsRepository;
+import dio.Santander.Dev.Week._4.domain.ports.GenerativeAiService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
 
+@EnableFeignClients
 @SpringBootApplication
 public class SantanderDevWeek2024Application {
 
@@ -20,7 +23,7 @@ public class SantanderDevWeek2024Application {
 	}
 
 	@Bean
-	public AskChampionUseCase provideAskChampionUseCase(ChampionsRepository championsRepository) {
-		return new AskChampionUseCase(championsRepository);
+	public AskChampionUseCase provideAskChampionUseCase(ChampionsRepository championsRepository, GenerativeAiService genService) {
+		return new AskChampionUseCase(championsRepository, genService);
 	}
 }
